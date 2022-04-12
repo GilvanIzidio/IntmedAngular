@@ -1,0 +1,62 @@
+<form [formGroup]="form" class="flex justify-center h-screen items-center">
+  <div class="flex flex-col w-[25rem]">
+    <div class="flex flex-row pb-3 items-center space-x-2">
+      <div class="w-12 h-12 bg-primary rounded-lg"></div>
+      <p class="text-black/70 text-3xl font-semibold">Medicar</p>
+    </div>
+    <p class="text-black/70 text-xl font-semibold">Crie sua conta</p>
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <button type="button" mat-icon-button matSuffix (click)="hide = !hide">
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirmar Senha</mat-label>
+      <input
+        matInput
+        [type]="hideConfirmationPassword ? 'password' : 'text'"
+        formControlName="passwordConfirmation"
+      />
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        (click)="hideConfirmationPassword = !hideConfirmationPassword"
+      >
+        <mat-icon>{{
+          hideConfirmationPassword ? "visibility_off" : "visibility"
+        }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <div class="flex flex-row justify-between pt-3">
+      <button
+        routerLink="/login"
+        class="text-primary py-2 px-10 rounded-lg"
+        type="button"
+      >
+        Cancelar
+      </button>
+      <button
+        (click)="prepareFormToSubmit()"
+        class="bg-primary text-white py-2 px-10 rounded-lg"
+        type="submit"
+      >
+        Confirmar
+      </button>
+    </div>
+  </div>
+</form>

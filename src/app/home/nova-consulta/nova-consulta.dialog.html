@@ -1,0 +1,54 @@
+<h2 mat-dialog-title class="text-black/70">Nova Consulta</h2>
+<form [formGroup]="form" class="flex flex-col">
+  <mat-form-field appearance="outline">
+    <mat-label>Especialidade</mat-label>
+    <mat-select formControlName="specificities">
+      <mat-option *ngFor="let item of specificities" (click)="loadDoctors(item.id)" [value]="item.id">
+        {{ item.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Médico</mat-label>
+    <mat-select formControlName="doctor">
+      <mat-option *ngFor="let item of doctors" [value]="item.id">
+        {{ item.nome }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Data</mat-label>
+    <mat-select formControlName="date">
+      <mat-option *ngFor="let item of dates" [value]="item.id">
+        {{ item.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Hora</mat-label>
+    <mat-select formControlName="hour">
+      <mat-option *ngFor="let item of hours" [value]="item.value">
+        {{ item.value }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<mat-dialog-actions class="flex flex-row justify-between">
+  <button
+    [mat-dialog-close]="true"
+    class="text-primary py-2 px-16 rounded-lg"
+    type="button"
+  >
+    Cancelar
+  </button>
+  <button
+    [mat-dialog-close]="true"
+    class="bg-primary text-white py-2 px-16 rounded-lg disabled:bg-primary/50"
+    type="button"
+    [disabled]="this.form.invalid"
+    (click)="createAppointment()"
+  >
+    Confirmar
+  </button>
+</mat-dialog-actions>

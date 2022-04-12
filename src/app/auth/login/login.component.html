@@ -1,0 +1,37 @@
+<form [formGroup]="formData" class="flex justify-center h-screen items-center">
+  <div class="flex flex-col w-[25rem]">
+    <div class="flex flex-row pb-3 items-center space-x-2">
+      <img src="../../../assets/logo.png" class="w-12 h-12" ><img>
+      <p class="text-black/70 text-3xl font-semibold">Medicar</p>
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Email ou Login</mat-label>
+      <input matInput formControlName="username" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Senha</mat-label>
+      <input
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <button
+        type="button"
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+    </mat-form-field>
+    <mat-checkbox class="text-gray-400" formControlName="saveCredentials" >Lembrar minha senha</mat-checkbox>
+    <div class="flex flex-row justify-between pt-3">
+      <button routerLink="criar-conta" class="text-primary py-2 px-10 rounded-lg" type="button">
+        Criar Conta
+      </button>
+      <button (click)="login()" [disabled]="loading" class="bg-primary text-white py-2 px-10 rounded-lg" type="button">
+        {{loading ? 'Aguarde...' : 'Acessar'}}
+      </button>
+    </div>
+  </div>
+</form>
